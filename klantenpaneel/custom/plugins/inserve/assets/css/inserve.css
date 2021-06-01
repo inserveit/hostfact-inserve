@@ -1,0 +1,8 @@
+
+/* Custom CSS */
+
+body, html {width: 100%; height: 100%; margin: 0 !important; padding: 0}
+section.container {max-width: initial; margin: 0 !important; height: 100%; }
+section .row { height: 100%; }
+.inserve-container {display: flex; width: 100%; height: 100%; flex-direction: column; overflow: hidden;}
+.inserve-iframe { flex-grow: 1; border: none; margin: 0; padding: 0; }

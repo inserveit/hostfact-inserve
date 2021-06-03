@@ -1,8 +1,7 @@
 <?php /** Example of include custom CSS/JS */ ?>
-<script src="<?php echo get_file_path('inserve.js', 'js', 'inserve'); ?>"></script>
 <link rel="stylesheet" href="<?php echo get_file_path('inserve.css', 'css', 'inserve'); ?>">
 <div class="inserve-container">
-    <iframe class="inserve-iframe" src="http://test.inserve-portal.loc?access_token=<?=$accessToken?>"></iframe>
+    <iframe class="inserve-iframe" src="<?=$portalUrl?>"></iframe>
 </div>
 
 <?php

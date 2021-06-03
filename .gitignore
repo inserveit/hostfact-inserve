@@ -1,0 +1,7 @@
+/*
+!.gitignore
+!klantenpaneel
+klantenpaneel/*
+!klantenpaneel/custom
+klantenpaneel/custom/plugins
+!klantenpaneel/custom/plugins/inserve/*

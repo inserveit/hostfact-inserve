@@ -7,26 +7,35 @@ use Debtor_Model;
 
 class Inserve_Controller extends \Base_Controller
 {
+    public $config;
+
 	public function __construct(Template $template)
 	{
+	    include_once(CUSTOMPATH . '/plugins/inserve/config.php');
+	    if(empty($config))
+	        throw new \Exception("Configuratiebestand niet gevonden.",500);
+
+	    $this->config = $config;
+
 		// Call service controller construct
 		parent::__construct($template);
 	}
 
 	public function index()
 	{
-        $apiKey = "xz8l9Yk4V2ZUOxZ8Rh3h6dVecAZJmbkSCNbUufy4c58qhf48qJCgXSjpMNEEgdTJ";
-        $baseUrl = 'http://test.inserve-api.loc';
-	    $api = new Inserve_Model($baseUrl, $apiKey);
+        $baseUrl = 'https://' . $this->config['subdomain'] . '.inserve-api'.($this->config['staging'] ? 'beta' : '').'.nl';
+	    $api = new Inserve_Model($baseUrl, $this->config['apiKey']);
         $debtor = new Debtor_Model();
         $debtor->show();
         $debtorCode = $debtor->DebtorCode;
-        $companies = $api->get('/companies?builder[0][where][0]=debtor_code&builder[0][where][1]=' . $debtorCode);
-        $companyId = $companies[0]['id'];
-        $clients = $api->get('/clients?builder[0][where][0]=company_id&builder[0][where][1]=' . $companyId);
-        $email = $clients[0]['email'];
-        $token = $api->post('/auth/access-token', ['username' => $email]);
-        $this->Template->accessToken = $token['access_token'];
+        try {
+            $companies = $api->get('/companies?builder[0][where][0]=debtor_code&builder[0][where][1]=' . $debtorCode);
+            $clients = $api->get('/clients?builder[0][where][0]=company_id&builder[0][where][1]=' . $companies[0]['id']);
+            $token = $api->post('/auth/access-token', ['username' => $clients[0]['email']]);
+            $this->Template->portalUrl = 'https://' . $this->config['subdomain'] . '.inportal' . ($this->config['staging'] ? 'beta' : '') . '.nl?access_token=' . $token['access_token'];
+        } catch (\Exception $e) {
+            throw new \Exception("Er ging iets mis in de verbinding met de API.",500);
+        }
 
         $this->Template->show('inserve');
 	}

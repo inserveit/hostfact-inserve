@@ -1,18 +1,8 @@
 <?php /** Example of include custom CSS/JS */ ?>
 <script src="<?php echo get_file_path('inserve.js', 'js', 'inserve'); ?>"></script>
 <link rel="stylesheet" href="<?php echo get_file_path('inserve.css', 'css', 'inserve'); ?>">
-<?php
-echo "<pre>";
-$debtor = new Debtor_Model();
-$debtor->show();
-$debtorCode = $debtor->DebtorCode;
-$apiKey = "xz8l9Yk4V2ZUOxZ8Rh3h6dVecAZJmbkSCNbUufy4c58qhf48qJCgXSjpMNEEgdTJ";
-
-$accessToken = "";
-
-?>
 <div class="inserve-container">
-    <iframe class="inserve-iframe" src="https://test.inportalbeta.nl?access_token=<?=$accessToken?>"></iframe>
+    <iframe class="inserve-iframe" src="http://test.inserve-portal.loc?access_token=<?=$accessToken?>"></iframe>
 </div>
 
 <?php

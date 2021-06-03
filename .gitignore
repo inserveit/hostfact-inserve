@@ -1,7 +1,7 @@
 /*
 !.gitignore
+
 !klantenpaneel
 klantenpaneel/*
-!klantenpaneel/custom
-klantenpaneel/custom/plugins
-!klantenpaneel/custom/plugins/inserve/*
+!klantenpaneel/custom/plugins/inserve
+klantenpaneel/custom/plugins/inserve/config.php

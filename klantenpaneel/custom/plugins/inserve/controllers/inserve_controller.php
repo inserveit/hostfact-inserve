@@ -31,7 +31,14 @@ class Inserve_Controller extends \Base_Controller
         try {
             $companies = $api->get('/companies?builder[0][where][0]=debtor_code&builder[0][where][1]=' . $debtorCode);
             $clients = $api->get('/clients?builder[0][whereHas][0]=companies&builder[0][whereHas][1]=id&builder[0][whereHas][2]=' . $companies[0]['id']);
-            $token = $api->post('/auth/access-token', ['username' => $clients[0]['email']]);
+
+            if (!count($clients) OR empty($clients[0]['email'])) {
+                // Only fetch token if a client with valid email is found
+                $token = ['access_token' => ''];
+            } else {
+                $token = $api->post('/auth/access-token', ['username' => $clients[0]['email']]);
+            }
+
             $this->Template->portalUrl = 'https://' . $this->config['subdomain'] . '.inportal' . ($this->config['staging'] ? 'beta' : '') . '.nl?access_token=' . $token['access_token'];
         } catch (\Exception $e) {
             throw new \Exception("Er ging iets mis in de verbinding met de API.",500);

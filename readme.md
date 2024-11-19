@@ -1,7 +1,5 @@
-# DEPRECATED
-Het klantportaal is per april 2024 compleet vernieuwd. De ondersteuning voor deze plug-in komt daarmee te vervallen.
-
 # HostFact plugin voor Inserve
+Het klantportaal is per april 2024 compleet vernieuwd. Deze plug-in wordt niet meer officieel ondersteund, maar wordt aangeboden as-is.
 
 ## Algemene informatie
 

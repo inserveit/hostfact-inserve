@@ -34,12 +34,12 @@ class Inserve_Controller extends \Base_Controller
 
             if (!count($clients) OR empty($clients[0]['email'])) {
                 // Only fetch token if a client with valid email is found
-                $token = ['access_token' => ''];
+                $response = ['url' => 'https://' . $this->config['subdomain'] . '.inportal' . ($this->config['staging'] ? 'beta' : '') . '.nl'];
             } else {
-                $token = $api->post('/auth/access-token', ['username' => $clients[0]['email']]);
+                $response = $api->get('/auth/portal-login/' . $clients[0]['id']);
             }
 
-            $this->Template->portalUrl = 'https://' . $this->config['subdomain'] . '.inportal' . ($this->config['staging'] ? 'beta' : '') . '.nl?access_token=' . $token['access_token'];
+            $this->Template->portalUrl = $response['url'];
         } catch (\Exception $e) {
             throw new \Exception("Er ging iets mis in de verbinding met de API.",500);
         }

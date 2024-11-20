@@ -17,4 +17,4 @@ Het klantportaal is per april 2024 compleet vernieuwd. De ondersteuning voor dez
 
 ## Hulp
 
-Ga naar https://help.inserve.nl voor meer informatie.
+Ga naar https://docs.inserve.nl voor meer informatie.

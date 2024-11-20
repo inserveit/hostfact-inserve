@@ -15,4 +15,4 @@ Het klantportaal is per april 2024 compleet vernieuwd. Deze plug-in wordt niet m
 
 ## Hulp
 
-Ga naar https://help.inserve.nl voor meer informatie.
+Ga naar https://docs.inserve.nl voor meer informatie.
